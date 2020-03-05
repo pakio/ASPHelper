@@ -15,11 +15,14 @@ class VBSDocumentSymbolProvider implements vscode.DocumentSymbolProvider {
 		token: vscode.CancellationToken): Thenable<vscode.SymbolInformation[]> {
 		return new Promise((resolve, reject) => {
 			var symbols = [];
-			var functionPrefix = [
+			var functionSinglePrefix = [
 				"function",
+				"sub",
+			];
+			
+			var functionDoublePrefix = [
 				"public function",
 				"private function",
-				"sub",
 				"public sub",
 				"private sub"
 			];
@@ -28,22 +31,58 @@ class VBSDocumentSymbolProvider implements vscode.DocumentSymbolProvider {
 				var line = document.lineAt(i);
 				var trimmedText = line.text.trim().toLowerCase();
 				if (trimmedText.startsWith("class")) {
-					symbols.push(new vscode.SymbolInformation(
-						line.text.trim().split(" ").slice(1).join(),
-						vscode.SymbolKind.Class,
-						line.text.trim().split(" ").slice(1).join(),
-						new vscode.Location(document.uri, line.range)
-					));
+					for (var j = i; j < document.lineCount; j++) { 
+						var innerLine = document.lineAt(j);
+						var trimmedInnerText = innerLine.text.trim().toLowerCase();
+						if (trimmedInnerText.startsWith(("end class"))) { 
+							symbols.push(new vscode.SymbolInformation(
+								line.text.trim().split(" ").slice(1).join(),
+								vscode.SymbolKind.Class,
+								line.text.trim().split(" ").slice(1).join(),
+								new vscode.Location(document.uri, new vscode.Range(new vscode.Position(i, 0), new vscode.Position(j, 0)))
+							));
+							break;
+						}
+						continue;
+					}
 					continue;
 				}
-				for (var prefix of functionPrefix) { 
+				for (var prefix of functionSinglePrefix) { 
 					if (trimmedText.startsWith(prefix)) { 
-						symbols.push(new vscode.SymbolInformation(
-							line.text.replace(prefix, "").trim(),
-							vscode.SymbolKind.Function,
-							line.text.replace(prefix, "").trim(),
-							new vscode.Location(document.uri, line.range)
-						));
+						for (var j = i; j < document.lineCount; j++) {
+							var innerLine = document.lineAt(j);
+							var trimmedInnerText = innerLine.text.trim().toLowerCase();
+							if (trimmedInnerText.startsWith(("end " + prefix))) {
+								symbols.push(new vscode.SymbolInformation(
+									line.text.trim().split(" ").slice(1).join(" "),
+									vscode.SymbolKind.Function,
+									line.text.trim(),
+									new vscode.Location(document.uri, new vscode.Range(new vscode.Position(i, 0), new vscode.Position(j, 0)))
+								));
+								break;
+							}
+							continue;
+						}
+						continue;
+					}
+				}
+
+				for (var prefix of functionDoublePrefix) {
+					if (trimmedText.startsWith(prefix)) {
+						for (var j = i; j < document.lineCount; j++) {
+							var innerLine = document.lineAt(j);
+							var trimmedInnerText = innerLine.text.trim().toLowerCase();
+							if (trimmedInnerText.startsWith(("end " + prefix.split(" ")[1]))) {
+								symbols.push(new vscode.SymbolInformation(
+									line.text.trim().split(" ").slice(2).join(" "),
+									vscode.SymbolKind.Function,
+									line.text.trim(),
+									new vscode.Location(document.uri, new vscode.Range(new vscode.Position(i, 0), new vscode.Position(j, 0)))
+								));
+								break;
+							}
+							continue;
+						}
 						continue;
 					}
 				}

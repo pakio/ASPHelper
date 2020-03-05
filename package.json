@@ -1,9 +1,9 @@
 {
 	"name": "ASPHelper",
 	"displayName": "ASPHelper",
-	"publisher": "kazuma.pakio.arimura",
+	"publisher": "kazumaarimura",
 	"description": "",
-	"version": "0.0.1",
+	"version": "0.0.2",
 	"engines": {
 		"vscode": "^1.42.0"
 	},
@@ -13,6 +13,7 @@
 	"activationEvents": [
 		"onLanguage:vbscript"
 	],
+	"repository": "https://github.com/pakio/ASPHelper",
 	"main": "./out/extension.js",
 	"contributes": {
 		"languages": [
