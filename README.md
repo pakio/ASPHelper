@@ -1,6 +1,6 @@
-# ASPHelper README
-this is the tool for analyzing and autocompletion for Classic ASP(.Net)
+# aspanalyzer README
 
+this is the readme for aspanalyzer
 
 ## Features
 
