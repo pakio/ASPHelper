@@ -1,9 +1,9 @@
 {
 	"name": "ASPHelper",
-	"displayName": "ASPHelper",
+	"displayName": "Helping Code jump and Class, Function Analyzer for Classic ASP",
 	"publisher": "kazumaarimura",
 	"description": "",
-	"version": "0.0.2",
+	"version": "0.0.3",
 	"engines": {
 		"vscode": "^1.42.0"
 	},
@@ -11,14 +11,14 @@
 		"Other"
 	],
 	"activationEvents": [
-		"onLanguage:vbscript"
+		"onLanguage:asp"
 	],
 	"repository": "https://github.com/pakio/ASPHelper",
 	"main": "./out/extension.js",
 	"contributes": {
 		"languages": [
 			{
-				"id": "vbscript",
+				"id": "asp",
 				"extensions": [
 					".vbs",
 					".wsc",

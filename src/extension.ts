@@ -3,14 +3,14 @@ import { exists } from 'fs';
 
 export function activate(context: vscode.ExtensionContext) {
 	context.subscriptions.push(vscode.languages.registerDocumentSymbolProvider(
-		{ language: "vbscript" }, new VBSDocumentSymbolProvider()
+		{ language: "asp" }, new ASPDocumentSymbolProvider()
 	));
 	context.subscriptions.push(vscode.languages.registerDefinitionProvider(
-		{ language: "vbscript" }, new VBSDefinitionProvider()
+		{ language: "asp" }, new ASPDefinitionProvider()
 	));
 }
 
-class VBSDocumentSymbolProvider implements vscode.DocumentSymbolProvider {
+class ASPDocumentSymbolProvider implements vscode.DocumentSymbolProvider {
 	public provideDocumentSymbols(document: vscode.TextDocument,
 		token: vscode.CancellationToken): Thenable<vscode.SymbolInformation[]> {
 		return new Promise((resolve, reject) => {
@@ -93,7 +93,7 @@ class VBSDocumentSymbolProvider implements vscode.DocumentSymbolProvider {
 	}
 }
 
-class VBSDefinitionProvider implements vscode.DefinitionProvider {
+class ASPDefinitionProvider implements vscode.DefinitionProvider {
 	public provideDefinition(document: vscode.TextDocument,
 		position: vscode.Position,
 		token: vscode.CancellationToken): Thenable<vscode.Definition> {
@@ -102,7 +102,7 @@ class VBSDefinitionProvider implements vscode.DefinitionProvider {
 			if (!wordRange) {
 				reject(['No word here.']);
 				return;
-			}
+			
 
 			const currentWord = document.lineAt(position.line).text.slice(wordRange.start.character, wordRange.end.character);
 			var functionPrefix = [
