@@ -1,9 +1,9 @@
 {
 	"name": "ASPHelper",
-	"displayName": "Helping Code jump and Class, Function Analyzer for Classic ASP",
+	"displayName": "ASPHelper",
 	"publisher": "kazumaarimura",
 	"description": "",
-	"version": "0.0.4",
+	"version": "0.0.6",
 	"engines": {
 		"vscode": "^1.42.0"
 	},

@@ -4,6 +4,6 @@ All notable changes to the "aspanalyzer" extension will be documented in this fi
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
-## [Unreleased]
+## [0.0.6]
 
-- Initial release
+- FxingBug : statement start with subxxxx or functionxxx were recognized as function.
