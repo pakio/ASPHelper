@@ -107,8 +107,8 @@ class ASPDefinitionProvider implements vscode.DefinitionProvider {
 
 			const currentWord = document.lineAt(position.line).text.slice(wordRange.start.character, wordRange.end.character);
 			var functionPrefix = [
-				"function ",
-				"sub "
+				"function",
+				"sub"
 			];
 			var matchedLine = -1;
 			for (var i = 0; i < document.lineCount; i++) {
