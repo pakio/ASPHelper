@@ -1,6 +1,6 @@
 # ASP Helper
 
-This is a Visual Studio Code extension to analyze VBScript.
+This is a Visual Studio Code extension to analyze Classic ASP.
 
 ## Features
 - You can see `Class`, `Function` and `Sub` of your displayed file in `OUTLINE`.

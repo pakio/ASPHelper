@@ -102,6 +102,7 @@ class ASPDefinitionProvider implements vscode.DefinitionProvider {
 			if (!wordRange) {
 				reject(['No word here.']);
 				return;
+			}
 			
 
 			const currentWord = document.lineAt(position.line).text.slice(wordRange.start.character, wordRange.end.character);

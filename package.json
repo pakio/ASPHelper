@@ -3,7 +3,7 @@
 	"displayName": "Helping Code jump and Class, Function Analyzer for Classic ASP",
 	"publisher": "kazumaarimura",
 	"description": "",
-	"version": "0.0.3",
+	"version": "0.0.4",
 	"engines": {
 		"vscode": "^1.42.0"
 	},
@@ -20,8 +20,6 @@
 			{
 				"id": "asp",
 				"extensions": [
-					".vbs",
-					".wsc",
 					".asp",
 					".inc"
 				]
